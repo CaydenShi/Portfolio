@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0d0d0f;
+  color: #c8c8c8;
+  font-family: "Courier New", monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #1e1e22;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+.nav-logo {
+  color: #e8e8e8;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: #666;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: #4ade80;
+}
+.hero {
+  min-height: calc(100vh - 57px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  max-width: 860px;
+}
+.hero-label {
+  font-size: 11px;
+  color: #4ade80;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero-name {
+  font-size: 64px;
+  color: #f0f0f0;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: #4ade80;
+}
+
+.hero-sub {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 32px;
+  letter-spacing: 0.05em;
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: #888;
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary {
+  padding: 10px 24px;
+  border: 1px solid #4ade80;
+  color: #4ade80;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-secondary {
+  padding: 10px 24px;
+  border: 1px solid #2a2a2e;
+  color: #666;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background-color: #4ade80;
+  color: #0d0d0f;
+}
+
+.btn-secondary:hover {
+  border-color: #666;
+  color: #c8c8c8;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-top: 1px solid #1e1e22;
+  margin-top: auto;
+}
+
+.footer-resume {
+  font-size: 12px;
+  color: #4ade80;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-family: "Courier New", monospace;
+}
+
+.footer-resume:hover {
+  color: #c8c8c8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 11px;
+  color: #444;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-links a:hover {
+  color: #4ade80;
+}
+.projects {
+  padding: 80px 0 64px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 28px;
+}
+
+.section-title {
+  font-size: 11px;
+  color: #4ade80;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.section-link {
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.section-link:hover {
+  color: #4ade80;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background-color: #1e1e22;
+  border: 1px solid #1e1e22;
+}
+
+.project-card {
+  background-color: #0d0d0f;
+  padding: 28px;
+  border-left: 2px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  background-color: #111113;
+  border-left: 2px solid #4ade80;
+}
+
+.project-tag {
+  font-size: 10px;
+  color: #4ade80;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.project-title {
+  font-size: 15px;
+  color: #e0e0e0;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.project-desc {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.project-meta {
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 0.05em;
+}
+
+.project-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.project-coming {
+  font-size: 11px;
+  color: #2a2a2e;
+  letter-spacing: 0.1em;
+}
+.project-read-more {
+  font-size: 11px;
+  color: transparent;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 16px;
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .project-read-more {
+  color: #4ade80;
+}
