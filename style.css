@@ -663,3 +663,9 @@ footer {
   color: inherit;
   display: block;
 }
+.log-image {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  border: 1px solid #1a1a2e;
+}
