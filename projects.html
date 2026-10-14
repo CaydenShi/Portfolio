@@ -12,52 +12,48 @@
       <div class="nav-links">
         <a href="about.html">about</a>
         <a href="projects.html">projects</a>
+        <a href="pictures.html">pictures</a>
       </div>
     </nav>
     <main class="container">
-      <section class="projects-page">
-        <div class="page-header">
-          <h1 class="page-title">projects</h1>
-          <p class="page-sub">things i've built</p>
-        </div>
-        <div class="projects-full-grid">
-          <a href="/projects/hab-payload/index.html" class="project-card-full">
-            <div class="project-card-left">
-              <p class="project-tag">high altitude systems</p>
-              <h3 class="project-title">HAB Sensor Payload</h3>
-              <p class="project-desc">
-                ESP32-based flight computer for Northrop Grumman's HIP program.
-                Concurrent SD logging and LoRa telemetry, with I2C/SPI sensors
-                for pressure, altitude, and UVA/UVB.
-              </p>
-              <p class="project-meta">→ C · ESP32 · KiCad · 2025</p>
-            </div>
-            <div class="project-card-arrow">→</div>
+      <section class="projects">
+        <div class="section-header"></div>
+        <div class="projects-grid">
+          <a href="projects/hab-payload/index.html" class="project-card">
+            <p class="project-tag">high altitude systems</p>
+            <h3 class="project-title">HAB Payload</h3>
+            <p class="project-desc">
+              ESP32-based HAB flight computer for Northrop Grumman. Concurrent
+              SD logging and LoRa telemetry, with I2C/SPI sensors for pressure,
+              altitude, and UVA/UVB.
+            </p>
+            <p class="project-meta">C · ESP32 · 2025</p>
+            <p class="project-read-more">view project →</p>
           </a>
-          <a href="/Projects/maglev/index.html" class="project-card-full">
-            <div class="project-card-left">
-              <p class="project-tag">control systems</p>
-              <h3 class="project-title">Maglev System</h3>
-              <p class="project-desc">
-                First personal project. I use silly pid loop to keep
-                electromagnet floating in the air.
-              </p>
-              <p class="project-meta">→ C · Arduino · PID · 2026</p>
-            </div>
-            <div class="project-card-arrow">→</div>
+
+          <a href="projects/FTCBot/index.html" class="project-card">
+            <p class="project-tag">Robotics</p>
+            <h3 class="project-title">Past First Tech Challenge Bots</h3>
+            <p class="project-desc">
+              Two seasons of FTC robots for C.A.R.T. #23280, as team lead.
+              Vision-guided PD turret with regression-tuned flywheel PIDF, Pedro
+              Pathing and RoadRunner autos on fused odometry, and state-machine
+              color sorting.
+            </p>
+            <p class="project-meta">
+              Onshape · Java · Autonomous Navigation · 2025
+            </p>
+            <p class="project-read-more">view project →</p>
           </a>
-          <a href="/Projects/FTCBot/index.html" class="project-card-full">
-            <div class="project-card-left">
-              <p class="project-tag">control systems</p>
-              <h3 class="project-title">FTC Robot</h3>
-              <p class="project-desc">
-                ATmega328P + MPU-6050 IMU. Real-time PID controller driving a DC
-                motor via L298N H-bridge to maintain upright equilibrium.
-              </p>
-              <p class="project-meta">→ C · Arduino · PID · 2025</p>
-            </div>
-            <div class="project-card-arrow">→</div>
+          <a href="other.html" class="project-card">
+            <p class="project-tag">miscellaneous</p>
+            <h3 class="project-title">Other Projects</h3>
+            <p class="project-read-more">view project →</p>
           </a>
+
+          <div class="project-card project-empty">
+            <p class="project-coming">// more coming soon</p>
+          </div>
         </div>
       </section>
     </main>

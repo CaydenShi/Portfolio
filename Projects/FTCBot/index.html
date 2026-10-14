@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>First Tech Challenge Robot — Cayden Shi</title>
+    <title>C.A.R.T. FTC #23280 — Cayden Shi</title>
+    <meta
+      name="description"
+      content="Two seasons leading C.A.R.T., FTC team #23280: team lead, owner of all robot software, and hardware designer for the INTO THE DEEP and DECODE robots."
+    />
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
@@ -12,76 +16,77 @@
       <div class="nav-links">
         <a href="../../about.html">about</a>
         <a href="../../projects.html">projects</a>
+        <a href="../../pictures.html">pictures</a>
       </div>
     </nav>
+
     <main class="container">
       <section class="project-page">
         <div class="project-page-header">
           <a href="../../projects.html" class="back-link">← all projects</a>
-          <p class="project-tag">high altitude systems</p>
-          <h1 class="project-page-title">First Tech Challenge Robot</h1>
-          <p class="project-page-sub">C · ESP32 · KiCad · 2025</p>
+          <p class="project-tag">competitive robotics</p>
+          <h1 class="project-page-title">C.A.R.T. — FTC Team #23280</h1>
+          <p class="project-page-sub">Java · Onshape · 2024–2026</p>
         </div>
+
+        <figure class="project-figure">
+          <img
+            src="robopics/teampic.png"
+            alt="C.A.R.T. FTC team #23280"
+            style="
+              width: 100%;
+              max-height: 380px;
+              object-fit: cover;
+              border-radius: 8px;
+            "
+          />
+        </figure>
 
         <div class="project-page-summary">
           <p>
-            ESP32-based flight computer for Northrop Grumman's HIP program.
-            Concurrent SD logging and LoRa telemetry, with I2C/SPI sensors for
-            pressure, altitude, and UVA/UVB.
+            For 2.5 seasons I led C.A.R.T., a 15-person FIRST Tech Challenge
+            team, as co-captain.
           </p>
-        </div>
-
-        <div class="project-page-image-placeholder">
-          <p>// photo or schematic</p>
         </div>
 
         <div class="project-page-body">
           <div class="project-section">
-            <h2 class="project-section-title">overview</h2>
-            <p class="project-section-text">
-              Write a full overview of the project here. What was the goal, what
-              constraints did you have, what was the context.
-            </p>
-          </div>
-          <div class="project-section">
-            <h2 class="project-section-title">hardware</h2>
-            <p class="project-section-text">
-              Describe the hardware design — components chosen, PCB layout
-              decisions, soldering, enclosure, etc.
-            </p>
-          </div>
-          <div class="project-section">
-            <h2 class="project-section-title">firmware</h2>
-            <p class="project-section-text">
-              Describe the firmware — how you structured the code, how you
-              handled concurrency, any interesting implementation details.
-            </p>
-          </div>
-          <div class="project-section">
-            <h2 class="project-section-title">results</h2>
-            <p class="project-section-text">
-              What happened? Did it work? What data did you collect? What would
-              you do differently?
-            </p>
-          </div>
-        </div>
-
-        <div class="build-log-section">
-          <div class="section-header">
-            <p class="section-title">build log</p>
-          </div>
-          <div class="build-log-list">
-            <a href="buildlog1.html" class="build-log-entry">
-              <div class="build-log-left">
-                <p class="build-log-date">jan 2025</p>
-                <p class="build-log-title">Log 1 — getting started</p>
-              </div>
-              <div class="build-log-arrow">→</div>
-            </a>
+            <h2 class="project-section-title">the robots</h2>
+            <div class="robot-cards">
+              <a href="into-the-deep.html" class="robot-card">
+                <!-- PHOTO 2: INTO THE DEEP robot, 3/4 view, slides extended -->
+                <div class="robot-card-image">
+                  <img src="robopics/deepbot.png" alt="INTO THE DEEP robot" />
+                </div>
+                <p class="robot-card-season">2024–25 · INTO THE DEEP</p>
+                <p class="robot-card-title">Slide-and-claw specimen robot</p>
+                <p class="robot-card-text">
+                  Belt-driven mecanum chassis, five intake iterations, color
+                  rejection in the transfer, three-wheel odometry and RoadRunner
+                  autonomous routines worth up to 83 points solo.
+                </p>
+                <p class="robot-card-link">read more →</p>
+              </a>
+              <a href="decode.html" class="robot-card">
+                <!-- PHOTO 3: DECODE robot, 3/4 view showing turret, hood and Limelight -->
+                <div class="robot-card-image">
+                  <img src="robopics/decodebot.png" alt="DECODE robot" />
+                </div>
+                <p class="robot-card-season">2025–26 · DECODE</p>
+                <p class="robot-card-title">Vision-guided turret shooter</p>
+                <p class="robot-card-text">
+                  AprilTag-tracking turret, regression-based shot model, dual
+                  flywheels under velocity PIDF with a readiness gate, color
+                  sorting, and a 12-ball Pedro Pathing autonomous.
+                </p>
+                <p class="robot-card-link">read more →</p>
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
     <footer>
       <div class="footer-links">
         <a href="https://github.com/CaydenShi" target="_blank">github</a>

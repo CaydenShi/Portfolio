@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HAB Sensor Payload — Cayden Shi</title>
+    <title>High-Altitude UV Payload — Cayden Shi</title>
+    <meta
+      name="description"
+      content="Project lead on a Northrop Grumman Foundation HIP high-altitude balloon payload: ESP32 T-Beam, three UV/environmental sensors, and a 915 MHz LoRa telemetry link to a ground station."
+    />
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
@@ -12,76 +16,456 @@
       <div class="nav-links">
         <a href="../../about.html">about</a>
         <a href="../../projects.html">projects</a>
+<a href="../../pictures.html">pictures</a>
       </div>
     </nav>
+
     <main class="container">
       <section class="project-page">
         <div class="project-page-header">
           <a href="../../projects.html" class="back-link">← all projects</a>
-          <p class="project-tag">high altitude systems</p>
-          <h1 class="project-page-title">HAB Sensor Payload</h1>
-          <p class="project-page-sub">C · ESP32 · KiCad · 2025</p>
+          <p class="project-tag">high-altitude systems</p>
+          <h1 class="project-page-title">High-Altitude Balloon UV Payload</h1>
+          <p class="project-page-sub">
+            Northrop Grumman Foundation HIP · Project Lead · C++ · ESP32 · LoRa
+            · 2025
+          </p>
         </div>
 
         <div class="project-page-summary">
           <p>
-            ESP32-based flight computer for Northrop Grumman's HIP program.
-            Concurrent SD logging and LoRa telemetry, with I2C/SPI sensors for
-            pressure, altitude, and UVA/UVB.
+            Our team set out to answer one question: does UV radiation change as
+            you climb through the layers of the atmosphere? As project lead on a
+            $500 grant, I built the payload's electronics and firmware: an ESP32
+            flight computer reading three sensors over I2C and an ADC, and a 915
+            MHz LoRa link that sent a packet to our ground station every three
+            seconds. The link carried live telemetry through a 90-minute ascent.
           </p>
         </div>
 
-        <div class="project-page-image-placeholder">
-          <p>// photo or schematic</p>
+        <!-- PHOTO 1 (hero): finished payload box, or the payload hanging from the balloon at launch -->
+        <figure class="project-figure">
+          <img
+            src="ngpics/build.png"
+            alt="Lid-Off Finished balloon payload"
+            loading="lazy"
+          />
+          <figcaption>The flight payload.</figcaption>
+        </figure>
+
+        <div class="spec-grid">
+          <div class="spec-item">
+            <p class="spec-label">flight computer</p>
+            <p class="spec-value">LilyGO T-Beam (ESP32 + SX1276)</p>
+          </div>
+          <div class="spec-item">
+            <p class="spec-label">sensors</p>
+            <p class="spec-value">BME280, LTR390, GUVA-S12SD</p>
+          </div>
+          <div class="spec-item">
+            <p class="spec-label">radio</p>
+            <p class="spec-value">915 MHz LoRa · SF9 · 125 kHz · CR 4/7</p>
+          </div>
+          <div class="spec-item">
+            <p class="spec-label">telemetry</p>
+            <p class="spec-value">5-field CSV packet every 3 s</p>
+          </div>
+          <div class="spec-item">
+            <p class="spec-label">ground station</p>
+            <p class="spec-value">SX1262 receiver + 128×64 OLED</p>
+          </div>
+          <div class="spec-item">
+            <p class="spec-label">my role</p>
+            <p class="spec-value">Project lead; electronics + firmware</p>
+          </div>
         </div>
 
         <div class="project-page-body">
+          <!-- ───────────── MISSION ───────────── -->
           <div class="project-section">
-            <h2 class="project-section-title">overview</h2>
+            <h2 class="project-section-title">the question</h2>
             <p class="project-section-text">
-              Write a full overview of the project here. What was the goal, what
-              constraints did you have, what was the context.
+              Sunlight reaches us as three UV bands. UVC is absorbed high in the
+              atmosphere and never reaches the ground. UVB is partly absorbed by
+              stratospheric ozone. Most UVA passes straight through. So a
+              payload climbing from the ground toward the stratosphere should
+              see UV intensity change with altitude, and the shape of that
+              change says something about where the absorption happens. That
+              matters for public safety (UV exposure for high-altitude travel
+              and outdoor work) and for climate science (tracking the ozone
+              layer).
+            </p>
+            <p class="project-section-text">
+              The program was run by the Northrop Grumman Foundation with the
+              University of Alabama in Huntsville. Our payload had to reach at
+              least 60,000 ft, stay up for at least 1.5 hours, send data back
+              over LoRa, and comply with FAA regulations for unmanned free
+              balloons (14 CFR Part 101).
             </p>
           </div>
+
+          <!-- ───────────── REQUIREMENTS ───────────── -->
+          <div class="project-section">
+            <h2 class="project-section-title">requirements and environment</h2>
+            <table class="req-table">
+              <thead>
+                <tr>
+                  <th>condition</th>
+                  <th>what it means for the design</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cold at altitude</td>
+                  <td>
+                    Insulated battery compartment; sensors rated for high
+                    altitude
+                  </td>
+                </tr>
+                <tr>
+                  <td>Low pressure</td>
+                  <td>
+                    Vented enclosure (3 mm air holes) so the box doesn't
+                    pressurize and the BME280 reads outside air
+                  </td>
+                </tr>
+                <tr>
+                  <td>UV exposure</td>
+                  <td>
+                    UV-resistant outer materials, with a clear window over the
+                    UV sensors
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wind</td>
+                  <td>
+                    Strong tether, balanced payload, every component secured
+                  </td>
+                </tr>
+                <tr>
+                  <td>Thin air (~0.1 kg/m³)</td>
+                  <td>Compact shape to limit drag (low priority)</td>
+                </tr>
+                <tr>
+                  <td>Recovery</td>
+                  <td>
+                    Parachute module for descent; separate radiosonde for
+                    tracking
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ───────────── HARDWARE ───────────── -->
           <div class="project-section">
             <h2 class="project-section-title">hardware</h2>
             <p class="project-section-text">
-              Describe the hardware design — components chosen, PCB layout
-              decisions, soldering, enclosure, etc.
+              The flight computer is a LilyGO T-Beam: an ESP32 with an SX1276
+              LoRa radio, an AXP192 power-management chip and an 18650 lithium
+              cell on board. Three sensors hang off it:
             </p>
+            <ul class="project-list">
+              <li>
+                <strong>BME280</strong> for temperature, humidity and pressure.
+                Pressure is how we know altitude: it falls predictably as the
+                payload climbs.
+              </li>
+              <li>
+                <strong>LTR390</strong>, a digital UV sensor run in its UV mode
+                (gain 3×, 16-bit resolution) for the UVA reading.
+              </li>
+              <li>
+                <strong>GUVA-S12SD</strong>, an analog UV photodiode with a
+                broader UV response, read on the ESP32's 12-bit ADC. Two UV
+                sensors with different responses gave us a cross-check on each
+                other.
+              </li>
+            </ul>
+            <p class="project-section-text">
+              The BME280 and LTR390 share a single I2C bus (SDA 21, SCL 22) with
+              the AXP192, and the GUVA's output goes to GPIO 13. In firmware I
+              switch on each of the AXP192's power rails (LDO2, LDO3, DCDC1,
+              DCDC2, EXTEN) before touching the sensors, because on the T-Beam
+              nothing downstream has power until the PMIC says so.
+            </p>
+            <!-- IMAGE 2: your wiring schematic (deck slide 11) — or redraw it cleanly -->
+            <figure class="project-figure">
+        <figure class="project-figure">
+          <img
+            src="ngpics/schematic.png"
+            alt="Lid-Off Finished balloon payload"
+            loading="lazy"
+          />
+              <figcaption>
+                Shared I2C bus for the digital sensors; analog UV on GPIO 13.
+              </figcaption>
+            </figure>
+            <p class="project-section-text">
+              The enclosure is expanded polystyrene wrapped in Tyvek, with a
+              clear polypropylene top so the UV sensors see the sky. It has two
+              levels: the sensors sit on top under the window, and the T-Beam
+              and battery sit below in the insulated section. The payload hangs
+              from the balloon on 50 lb kite line, with a radiosonde below it
+              for tracking.
+            </p>
+            <!-- IMAGE 3: payload model drawings (deck slide 9) — credit: drawn by Jasmine Steppe -->
+            <!-- PHOTO 4: open enclosure + breadboarded electronics (deck slide 10) -->
+            <figure class="project-figure">
+              <img
+                src="ngpics/enclosure.png"
+                alt="Lid-Off Finished balloon payload"
+                loading="lazy"
+              />
+                          <figure class="project-figure">
+              <img
+                src="ngpics/model.png"
+                alt="Lid-Off Finished balloon payload"
+                loading="lazy"
+              />
+              <figcaption>
+                Enclosure and electronics during assembly.
+              </figcaption>
+            </figure>
           </div>
+
+          <!-- ───────────── FIRMWARE ───────────── -->
           <div class="project-section">
             <h2 class="project-section-title">firmware</h2>
             <p class="project-section-text">
-              Describe the firmware — how you structured the code, how you
-              handled concurrency, any interesting implementation details.
+              I wrote three Arduino/C++ sketches and brought the system up one
+              layer at a time, so that when something broke I knew which layer
+              it was in:
             </p>
-          </div>
-          <div class="project-section">
-            <h2 class="project-section-title">results</h2>
+            <ol class="project-list">
+              <li>
+                <strong>test1</strong>: sensors only. Power up the PMIC, find
+                each sensor, print every reading over serial every 2 s. No radio
+                yet.
+              </li>
+              <li>
+                <strong>sensorradio</strong>: the flight code. Reads all
+                sensors, builds a comma-separated packet, transmits it over
+                LoRa, waits 3 s, repeats.
+              </li>
+              <li>
+                <strong>lorading</strong>: the ground station. Listens for
+                packets, parses the five fields, and prints them to serial and a
+                128×64 OLED.
+              </li>
+            </ol>
             <p class="project-section-text">
-              What happened? Did it work? What data did you collect? What would
-              you do differently?
+              Each packet is five fields at fixed precision:
+            </p>
+            <pre
+              class="code-block"
+            ><code>// temp(°C), humidity(%), pressure(hPa), UV index, GUVA voltage(V)
+24.5,48.4,994.8,0.00,0.000</code></pre>
+            <p class="project-section-text">
+              Both radios use RadioLib at 915 MHz with spreading factor 9, 125
+              kHz bandwidth and coding rate 4/7. Those settings trade speed for
+              range: each step up in spreading factor roughly doubles the time
+              on air in exchange for better sensitivity, and the extra
+              coding-rate redundancy lets the receiver correct more bit errors
+              at long distance. At SF9 a packet this size spends about a quarter
+              of a second on air, well inside the 3-second cycle.
+            </p>
+            <p class="project-section-text">
+              Setup is fail-loud: if a sensor or the radio doesn't respond at
+              power-up, the code prints what failed and halts instead of flying
+              with a silent gap in the data. The BME280 check tries both of its
+              possible I2C addresses (0x76, then 0x77), so the same code works
+              across breakout boards.
             </p>
           </div>
-        </div>
+
+          <!-- ───────────── TESTING (VIDEOS) ───────────── -->
+          <div class="project-section">
+            <h2 class="project-section-title">testing: proof of concept</h2>
+            <p class="project-section-text">
+              Before flight we tested the full chain on the bench. The first two
+              tests check the sensors: each reading should move the right way
+              when we change the conditions around it. The third test checks the
+              radio: packets sent by the flight computer arriving and decoding
+              at the ground station in real time.
+              <!-- ADD: what you changed in each test (e.g., breathed on the BME280, covered the UV sensors, took it outside) -->
+            </p>
+
+            <div class="video-grid">
+              <figure class="project-figure">
+                <div class="video-embed">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/bVBCrev9QKU"
+                    title="Functional test 1: sensors responding"
+                    loading="lazy"
+                    allow="
+                      accelerometer;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <figcaption>
+                  Test 1: live sensor readings responding to changes.
+                </figcaption>
+              </figure>
+
+              <figure class="project-figure">
+                <div class="video-embed">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/4CrPytlXJnI"
+                    title="Functional test 2: sensors responding"
+                    loading="lazy"
+                    allow="
+                      accelerometer;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <figcaption>
+                  Test 2: UV and environmental readings under changing
+                  conditions.
+                </figcaption>
+              </figure>
+
+              <figure class="project-figure">
+                <div class="video-embed">
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/I5PHDRW49DM"
+                    title="Functional test 3: live LoRa reception"
+                    loading="lazy"
+                    allow="
+                      accelerometer;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <figcaption>
+                  Test 3: packets received and parsed at the ground station in
+                  real time.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <!-- ───────────── FLIGHT ───────────── -->
+          <div class="project-section">
+            <h2 class="project-section-title">flight</h2>
+            <p class="project-section-text">
+              We planned the flight in five phases: set up the ground station
+              and decoding; weigh, assemble and release; watch transmissions
+              during the climb; track altitude and prepare for the drop; then
+              recover and analyze. We expected sharp drops in temperature and
+              pressure as the payload passed 60,000 ft, and planned for losing
+              signal near the ground when terrain and trees block the line of
+              sight.
+            </p>
+            <p class="project-section-text">
+              On launch day the LoRa link carried live telemetry through a
+              90-minute ascent.
+            </p>
+            <figure class="project-figure">
+              <img
+                src="ngpics/flight.png"
+                alt="Lid-Off Finished balloon payload"
+                loading="lazy"
+              />
+              <figcaption>Launch Diagram.</figcaption>
+            </figure>
+          </div>
+
+          <!-- ───────────── LESSONS ───────────── -->
+          <div class="project-section">
+            <h2 class="project-section-title">what i'd change</h2>
+
+            <ul class="project-list">
+              <div class="project-section">
+  <h2 class="project-section-title">the battery incident</h2>
+  <figure class="project-figure">
+    <img src="ngpics/issues.png" alt="LilyGO T-Beam with an 18650 cell in its holder" loading="lazy" />
+    <figcaption>The battery that didn't fit.</figcaption>
+  </figure>
+                <li>
+                <strong>Oopsy</strong> I made a big oopsy because the 18650 cell was too big for the battery holder we had and I decided to just push it as hard as possible and I broke the screen on the T-beam's backside. Oops. Now I know to check dimensions carefully and not brute force my electronics together. We had to switch to a new battery last minute too. 
+              </li>
+              <li>
+                <strong>UV index scaling.</strong> I converted the LTR390's raw
+                count to UV index with a divisor of 2300, which is the value for
+                18× gain and 20-bit resolution. At the 3× gain and 16-bit
+                resolution I actually configured, it should be about 24, so the
+                logged UV index was roughly 96 times too low. The raw counts are
+                still correct, so the data can be rescaled. The lesson: check a
+                sensor against a known reference before flight.
+              </li>
+              <li>
+                <strong>Use the hardware already on board.</strong> The T-Beam
+                has its own GPS module that the firmware never used; we relied
+                on the radiosonde for position. Adding GPS to each packet would
+                have tied every UV reading to a measured altitude instead of one
+                derived from pressure.
+              </li>
+              <li>
+                <strong>Log on board, too.</strong> Our design reserved a spot
+                for an SD card, but the flight code only transmitted. Logging
+                every reading locally would have kept the data from any stretch
+                where the link dropped.
+                <!-- VERIFY: confirm the SD card was not in the flight code -->
+              </li>
+            </ul>
+          </div>
+
+          
 
         <div class="build-log-section">
           <div class="section-header">
-            <p class="section-title">build log</p>
+            <p class="section-title">timeline</p>
           </div>
-          <div class="build-log-list">
-            <a href="buildlog1.html" class="build-log-entry">
-              <div class="build-log-left">
-                <p class="build-log-date">jan 2025</p>
-                <p class="build-log-title">Log 1 — getting started</p>
-              </div>
-              <div class="build-log-arrow">→</div>
-            </a>
+          <div class="timeline">
+            <div class="timeline-entry">
+              <p class="timeline-label">design</p>
+              <p class="timeline-text">
+                Science question, requirements, component selection, enclosure
+                model.
+              </p>
+            </div>
+            <div class="timeline-entry">
+              <p class="timeline-label">bring-up</p>
+              <p class="timeline-text">
+                test1: PMIC rails, BME280, LTR390 and GUVA reading over serial.
+              </p>
+            </div>
+            <div class="timeline-entry">
+              <p class="timeline-label">radio</p>
+              <p class="timeline-text">
+                sensorradio + lorading: 915 MHz link, CSV packets, OLED ground
+                station.
+              </p>
+            </div>
+            <div class="timeline-entry">
+              <p class="timeline-label">testing</p>
+              <p class="timeline-text">
+                Three bench tests: sensor response and real-time reception.
+              </p>
+            </div>
+            <div class="timeline-entry">
+              <p class="timeline-label">flight</p>
+              <p class="timeline-text">
+                Live telemetry through a 90-minute ascent.
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
     <footer>
       <div class="footer-links">
         <a href="https://github.com/CaydenShi" target="_blank">github</a>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pictures — Cayden Shi</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .carousel {
+        margin: 2.5rem 0 3rem;
+      }
+      .carousel-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+      }
+      .carousel-head h1 {
+        margin: 0;
+      }
+      .carousel-count {
+        font-size: 0.8rem;
+        opacity: 0.55;
+        margin-left: 0.5rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .carousel-controls {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .carousel-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        border: 1px solid rgba(127, 127, 127, 0.35);
+        background: transparent;
+        color: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          opacity 0.15s;
+      }
+      .carousel-btn:hover {
+        border-color: currentColor;
+      }
+      .carousel-btn:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+
+      .track {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: 0.25rem 0 1rem;
+        scrollbar-width: none;
+        cursor: grab;
+      }
+      .track::-webkit-scrollbar {
+        display: none;
+      }
+      .track.dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;
+        scroll-behavior: auto;
+      }
+
+      .slide {
+        flex: 0 0 auto;
+        margin: 0;
+        scroll-snap-align: center;
+        width: min(80vw, 460px);
+      }
+      .slide .frame {
+        aspect-ratio: 4 / 3;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(127, 127, 127, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+      .slide:hover img {
+        transform: scale(1.04);
+      }
+      .slide .ph {
+        font-size: 0.8rem;
+        opacity: 0.5;
+        font-family: monospace;
+      }
+      .slide figcaption {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 0.5rem;
+      }
+
+      .progress {
+        height: 2px;
+        background: rgba(127, 127, 127, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .progress span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: currentColor;
+        opacity: 0.6;
+        transition: width 0.15s linear;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .track {
+          scroll-behavior: auto;
+        }
+        .slide img {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">~/cayden</a>
+      <div class="nav-links">
+        <a href="about.html">about</a>
+        <a href="projects.html">projects</a>
+        <a href="pictures.html">pictures</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <section class="carousel">
+        <div class="carousel-head">
+          <h1>pictures<span class="carousel-count"></span></h1>
+          <div class="carousel-controls">
+            <button class="carousel-btn prev" aria-label="Previous">←</button>
+            <button class="carousel-btn next" aria-label="Next">→</button>
+          </div>
+        </div>
+
+        <div class="track">
+          <figure class="slide">
+            <div class="frame">
+              <img src="images/flying.png" alt="Flying" loading="lazy" />
+            </div>
+          </figure>
+          <figure class="slide">
+            <div class="frame">
+              <img
+                src="images/guitar.png"
+                alt="Playing guitar"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="slide">
+            <div class="frame">
+              <img src="images/league.png" alt="League" loading="lazy" />
+            </div>
+          </figure>
+          <figure class="slide">
+            <div class="frame">
+              <img src="images/stussy.png" alt="Stüssy" loading="lazy" />
+            </div>
+          </figure>
+        </div>
+        <div class="progress"><span></span></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a href="https://github.com/CaydenShi" target="_blank">github</a>
+        <a href="https://linkedin.com/in/cayden-shi" target="_blank"
+          >linkedin</a
+        >
+        <a href="mailto:caydenshi.dev@gmail.com">email</a>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const track = document.querySelector(".track");
+        const slides = [...track.querySelectorAll(".slide")];
+        const prev = document.querySelector(".prev");
+        const next = document.querySelector(".next");
+        const bar = document.querySelector(".progress span");
+        document.querySelector(".carousel-count").textContent =
+          `${slides.length} photos`;
+
+        const step = () => (slides[0] ? slides[0].offsetWidth + 16 : 300);
+        prev.addEventListener("click", () =>
+          track.scrollBy({ left: -step(), behavior: "smooth" }),
+        );
+        next.addEventListener("click", () =>
+          track.scrollBy({ left: step(), behavior: "smooth" }),
+        );
+
+        const update = () => {
+          const max = track.scrollWidth - track.clientWidth;
+          bar.style.width =
+            Math.max(max > 0 ? (track.scrollLeft / max) * 100 : 100, 4) + "%";
+          prev.disabled = track.scrollLeft <= 2;
+          next.disabled = track.scrollLeft >= max - 2;
+        };
+        track.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        track
+          .querySelectorAll("img")
+          .forEach((img) => img.addEventListener("load", update));
+        update();
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") prev.click();
+          if (e.key === "ArrowRight") next.click();
+        });
+
+        // click-and-drag with a mouse (touch already swipes natively)
+        let down = false,
+          startX = 0,
+          startLeft = 0;
+        track.addEventListener("pointerdown", (e) => {
+          if (e.pointerType !== "mouse") return;
+          down = true;
+          startX = e.clientX;
+          startLeft = track.scrollLeft;
+          track.classList.add("dragging");
+        });
+        window.addEventListener("pointermove", (e) => {
+          if (down) track.scrollLeft = startLeft - (e.clientX - startX);
+        });
+        window.addEventListener("pointerup", () => {
+          if (!down) return;
+          down = false;
+          track.classList.remove("dragging");
+          const center = track.scrollLeft + track.clientWidth / 2;
+          const nearest = slides.reduce((a, s) =>
+            Math.abs(s.offsetLeft + s.offsetWidth / 2 - center) <
+            Math.abs(a.offsetLeft + a.offsetWidth / 2 - center)
+              ? s
+              : a,
+          );
+          track.scrollTo({
+            left:
+              nearest.offsetLeft +
+              nearest.offsetWidth / 2 -
+              track.clientWidth / 2,
+            behavior: "smooth",
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -95,7 +95,6 @@ nav {
   max-width: 480px;
   line-height: 1.7;
   margin-bottom: 40px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .hero-ctas {
@@ -668,4 +667,184 @@ footer {
   max-width: 680px;
   height: auto;
   border: 1px solid #1a1a2e;
+}
+
+/* Append to style.css — classes used by the FTC pages.
+   Colors use currentColor/opacity so they inherit your existing theme. */
+
+.project-figure {
+  margin: 2rem 0;
+}
+.project-figure img,
+.project-figure video {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+.project-figure figcaption {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  margin-top: 0.5rem;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.spec-item {
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+.spec-label {
+  font-size: 0.75rem;
+  text-transform: lowercase;
+  opacity: 0.6;
+  margin: 0 0 0.25rem;
+}
+.spec-value {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.code-block {
+  background: rgba(127, 127, 127, 0.1);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+.project-section-text code {
+  font-size: 0.9em;
+  background: rgba(127, 127, 127, 0.12);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+.project-list {
+  padding-left: 1.2rem;
+  line-height: 1.6;
+}
+.project-list li {
+  margin-bottom: 0.75rem;
+}
+
+.robot-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.robot-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: border-color 0.15s;
+}
+.robot-card:hover {
+  border-color: currentColor;
+}
+.robot-card-image {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: rgba(127, 127, 127, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.robot-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.robot-card-season {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin: 0;
+}
+.robot-card-title {
+  font-weight: 600;
+  margin: 0.25rem 0 0.5rem;
+}
+.robot-card-text {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin: 0 0 0.5rem;
+}
+.robot-card-link {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.timeline {
+  border-left: 2px solid rgba(127, 127, 127, 0.3);
+  padding-left: 1.25rem;
+}
+.timeline-entry {
+  margin-bottom: 1rem;
+}
+.timeline-label {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin: 0;
+}
+.timeline-text {
+  margin: 0.2rem 0 0;
+}
+
+.req-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+.req-table th,
+.req-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  vertical-align: top;
+}
+.req-table th {
+  font-weight: 600;
+  opacity: 0.7;
+  text-transform: lowercase;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.video-grid .project-figure {
+  margin: 0;
+}
+.video-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(127, 127, 127, 0.1);
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.about-image img {
+  width: 100%;
+  max-width: 280px; /* change this number to make it bigger or smaller */
+  height: auto;
+  display: block;
+  border-radius: 8px;
 }

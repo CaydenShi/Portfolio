@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Other Work — Cayden Shi</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .other {
+        margin: 2.5rem 0 3.5rem;
+      }
+      .other-head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.6rem;
+        margin-bottom: 1.25rem;
+      }
+      .other-head h2 {
+        margin: 0;
+      }
+      .other-controls {
+        display: flex;
+        gap: 0.4rem;
+      }
+      .other-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        border: 1px solid rgba(127, 127, 127, 0.35);
+        background: transparent;
+        color: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          opacity 0.15s;
+      }
+      .other-btn:hover {
+        border-color: currentColor;
+      }
+      .other-btn:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+
+      .track {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding-bottom: 0.75rem;
+        scrollbar-width: none;
+      }
+      .track::-webkit-scrollbar {
+        display: none;
+      }
+      .slide {
+        flex: 0 0 auto;
+        margin: 0;
+        scroll-snap-align: start;
+        width: min(80vw, 420px);
+      }
+      .frame {
+        aspect-ratio: 4 / 3;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(127, 127, 127, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .frame .ph {
+        font-size: 0.8rem;
+        opacity: 0.5;
+        font-family: monospace;
+      }
+
+      .other-text {
+        margin: 1.75rem auto 0;
+        line-height: 1.6;
+        max-width: 65ch;
+        text-align: center;
+      }
+      .slide .frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+      .slide.video .frame {
+        aspect-ratio: 16 / 9;
+      }
+      .slide.contain .frame {
+        background: #000;
+      }
+      .slide.contain img {
+        object-fit: contain;
+      }
+      .slide.contain:hover img {
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">~/cayden</a>
+      <div class="nav-links">
+        <a href="about.html">about</a>
+        <a href="projects.html">projects</a>
+        <a href="pictures.html">pictures</a>
+      </div>
+    </nav>
+
+    <main class="container">
+      <!-- ───────────── ROCKETRY ───────────── -->
+      <section class="other">
+        <div class="other-head">
+          <h2>Rocketry</h2>
+        </div>
+        <figure style="margin: 0 auto; width: min(80vw, 420px)">
+          <img
+            src="images/rocketry.png"
+            alt="Del Norte Aerospace Club rocket"
+            loading="lazy"
+            style="
+              width: 100%;
+              aspect-ratio: 4 / 3;
+              object-fit: cover;
+              border-radius: 10px;
+              display: block;
+            "
+          />
+        </figure>
+        <p class="other-text">
+          As co-president of the Del Norte Aerospace Club, I directed a
+          nine-person team in qualifying for the American Rocketry Challenge
+          Nationals, with the top 20th score of 1,107 teams. Feel free to email
+          me to view the drag brake code I designed for our air brake module.
+        </p>
+        <p style="text-align: center; margin-top: 1rem">
+          <a
+            href="PASTE_LINK_HERE"
+            target="_blank"
+            rel="noopener"
+            style="
+              display: inline-block;
+              padding: 0.4rem 1rem;
+              border: 1px solid rgba(127, 127, 127, 0.35);
+              border-radius: 999px;
+              font-size: 0.85rem;
+              color: #4da3ff;
+              text-decoration: none;
+            "
+            >drag brake code →</a
+          >
+        </p>
+      </section>
+      <!-- ───────────── ROVER ───────────── -->
+      <section class="other">
+        <div class="other-head">
+          <h2>Stirling Engines for Mars Rovers</h2>
+          <div class="other-controls">
+            <button class="other-btn prev" aria-label="Previous">←</button>
+            <button class="other-btn next" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="track">
+          <figure class="slide contain">
+            <div class="frame">
+              <img src="images/data.png" alt="Mars rover test data" />
+            </div>
+          </figure>
+          <figure class="slide video">
+            <div class="frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/EAXGWPiNAec"
+                title="Control"
+                loading="lazy"
+                allow="
+                  accelerometer;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </figure>
+          <figure class="slide video">
+            <div class="frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/f7EWIZecsIU"
+                title="Design"
+                loading="lazy"
+                allow="
+                  accelerometer;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </figure>
+        </div>
+        <p class="other-text">
+          A grant-funded NASA project on passive heat rejection in
+          low-temperature-differential Stirling engines, aimed at rover power
+          efficiency on Mars. I designed cold-plate heat-sink fins that raised
+          flywheel speed 27% at a 40 °C temperature differential.
+        </p>
+      </section>
+      <!-- ───────────── OPALS ───────────── -->
+      <section class="other">
+        <div class="other-head">
+          <h2>OPALS</h2>
+        </div>
+        <figure style="margin: 0 auto; width: 100%; max-width: 900px">
+          <img
+            src="images/poster.png"
+            alt="Investigating Laser Shockwaves on Reactive Astrogliosis"
+            loading="lazy"
+            style="
+              width: 100%;
+              height: auto;
+              border-radius: 10px;
+              display: block;
+            "
+          />
+        </figure>
+        <p class="other-text">
+          I led a team of 6 interns to investigate how laser-induced shockwaves
+          can simulate the effects of Traumatic Brain Injury through reactive
+          astrogliosis activation.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <a href="https://github.com/CaydenShi" target="_blank">github</a>
+        <a href="https://linkedin.com/in/cayden-shi" target="_blank"
+          >linkedin</a
+        >
+        <a href="mailto:caydenshi.dev@gmail.com">email</a>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".other").forEach((sec) => {
+        const track = sec.querySelector(".track");
+        if (!track) return; // sections with a single image have no carousel
+        const prev = sec.querySelector(".prev");
+        const next = sec.querySelector(".next");
+        const step = () => track.querySelector(".slide").offsetWidth + 16;
+        prev.addEventListener("click", () => track.scrollBy({ left: -step() }));
+        next.addEventListener("click", () => track.scrollBy({ left: step() }));
+        const update = () => {
+          const max = track.scrollWidth - track.clientWidth;
+          prev.disabled = track.scrollLeft <= 2;
+          next.disabled = track.scrollLeft >= max - 2;
+        };
+        track.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        update();
+      });
+    </script>
+  </body>
+</html>
